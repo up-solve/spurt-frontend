@@ -33,6 +33,8 @@ const RegisterPharmacistSection: FC<RegisterPharmacistSectionProps> = () => {
         data?.email,
         data?.phoneNo
       );
+      // eslint-disable-next-line no-console
+      console.log(res);
       if (res.status === 200) {
         setFormError('');
         setFormSuccess(MESSAGES.PHARMACIST_CREATED);
@@ -43,6 +45,8 @@ const RegisterPharmacistSection: FC<RegisterPharmacistSectionProps> = () => {
         formMethods.reset();
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
       setFormSuccess('');
       if (isAxiosError(error)) {
         const status = error.response?.status;

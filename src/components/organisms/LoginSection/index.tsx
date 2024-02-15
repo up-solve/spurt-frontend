@@ -37,6 +37,9 @@ const LoginSection: FC<LoginSectionProps> = () => {
     try {
       const res = await loginRequest(data?.email, data?.password);
 
+      // eslint-disable-next-line no-console
+      console.log(res);
+
       if (res.status === 200) {
         setFormError('');
         setIsInvalidCred(false);
@@ -53,6 +56,8 @@ const LoginSection: FC<LoginSectionProps> = () => {
       }
       navigate(HOME_PAGE);
     } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
       if (isAxiosError(error)) {
         const status = error.response?.data?.status;
         if (status === 401 || status === 403) {

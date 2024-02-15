@@ -33,6 +33,8 @@ const RegisterAdminSection: FC<RegisterAdminSectionProps> = () => {
         data?.email,
         data?.password
       );
+      // eslint-disable-next-line no-console
+      console.log(res);
       if (res.status === 200) {
         setFormError('');
         setFormSuccess(MESSAGES.ADMIN_CREATED);
@@ -43,6 +45,8 @@ const RegisterAdminSection: FC<RegisterAdminSectionProps> = () => {
         formMethods.reset();
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
       setFormSuccess('');
       if (isAxiosError(error)) {
         const status = error.response?.data.status;

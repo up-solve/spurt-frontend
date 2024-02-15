@@ -25,12 +25,17 @@ const PaymentHistorySection: FC<PaymentHistorySectionProps> = () => {
     setFormError('');
     try {
       const res = await paymentHistoryRequest(data?.phoneNo);
+
+      // eslint-disable-next-line no-console
+      console.log(res);
+
       if (res.status === 200) {
         setFormError('');
-
         formMethods.reset();
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
       if (isAxiosError(error)) {
         const status = error.response?.data?.status;
         if (status === 401 || status === 403) {
