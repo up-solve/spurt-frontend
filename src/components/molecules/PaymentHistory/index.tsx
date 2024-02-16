@@ -1,9 +1,19 @@
 import { FC } from 'react';
 
-export interface PaymentHistoryProps {}
+import { History } from '@interfaces/History';
 
-const PaymentHistory: FC<PaymentHistoryProps> = () => {
-  return <>PaymentHistory</>;
+export interface PaymentHistoryProps {
+  history: History;
+}
+
+const PaymentHistory: FC<PaymentHistoryProps> = ({ history }) => {
+  return (
+    <div className="bg-bgWhite grid p-2 rounded-md grid-cols-3">
+      <p className="p-2">{history.date}</p>
+      <p className="p-2">{history.reviewCount}</p>
+      <p className="p-2">{history.newCount}</p>
+    </div>
+  );
 };
 
 export default PaymentHistory;
