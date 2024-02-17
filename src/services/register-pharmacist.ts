@@ -4,13 +4,13 @@ import { REGISTER_PHARMACIST_ENDPOINT } from '@constants/routes';
 
 export const registerPharmacistRequest = async (
   firstname: string,
-  email: string,
-  phoneNo: string
+  lastname: string,
+  mobile_no: string
 ) => {
   return axios.post(REGISTER_PHARMACIST_ENDPOINT, {
     firstname,
-    email,
-    phoneNo,
+    lastname,
+    mobile_no,
     user_type: 'pharmacist',
   });
 };

@@ -35,7 +35,7 @@ const RegisterAdminSection: FC<RegisterAdminSectionProps> = () => {
       );
       // eslint-disable-next-line no-console
       console.log(res);
-      if (res.status === 200) {
+      if (res?.data?.status === 200) {
         setFormError('');
         setFormSuccess(MESSAGES.ADMIN_CREATED);
         swal(MESSAGES.ADMIN_CREATED, {

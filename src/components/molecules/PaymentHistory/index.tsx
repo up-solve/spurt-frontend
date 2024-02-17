@@ -8,10 +8,19 @@ export interface PaymentHistoryProps {
 
 const PaymentHistory: FC<PaymentHistoryProps> = ({ history }) => {
   return (
-    <div className="bg-bgWhite grid p-2 rounded-md grid-cols-3">
-      <p className="p-2">{history.date}</p>
-      <p className="p-2">{history.reviewCount}</p>
-      <p className="p-2">{history.newCount}</p>
+    <div className="bg-bgWhite p-2 text-brown300 rounded-md flex flex-col">
+      <p className="p-2">
+        <span className="font-bold mr-2">Date: </span>
+        {history.date}
+      </p>
+      <p className="p-2">
+        <span className="font-bold mr-2">Review Count: </span>
+        {history.reviewCount}
+      </p>
+      <p className="p-2">
+        <span className="font-bold mr-2">New Count:</span>
+        {history.newCount}
+      </p>
     </div>
   );
 };

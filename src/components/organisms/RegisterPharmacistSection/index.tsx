@@ -30,12 +30,12 @@ const RegisterPharmacistSection: FC<RegisterPharmacistSectionProps> = () => {
     try {
       const res = await registerPharmacistRequest(
         data?.firstName,
-        data?.email,
+        data?.lastName,
         data?.phoneNo
       );
       // eslint-disable-next-line no-console
       console.log(res);
-      if (res.status === 200) {
+      if (res?.data?.status === 200) {
         setFormError('');
         setFormSuccess(MESSAGES.PHARMACIST_CREATED);
         swal(MESSAGES.PHARMACIST_CREATED, {
@@ -81,9 +81,9 @@ const RegisterPharmacistSection: FC<RegisterPharmacistSectionProps> = () => {
               />
               <FormInput
                 type="text"
-                name="email"
-                placeholder="enter email"
-                label="Email *"
+                name="lastName"
+                placeholder="enter last name"
+                label="Last Name *"
                 disabled={isLoading}
               />
               <FormInput

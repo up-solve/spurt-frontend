@@ -49,7 +49,7 @@ const LoginSection: FC<LoginSectionProps> = () => {
         setAuthToken(loginResponse?.email);
         setUser({
           name: {
-            first: loginResponse.firstName,
+            first: loginResponse.firstname,
           },
           email: loginResponse.email,
         });
