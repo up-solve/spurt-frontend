@@ -33,7 +33,9 @@ const PaymentHistorySection: FC<PaymentHistorySectionProps> = () => {
 
       setHistory([...historyData]);
 
-      if (res.status === 200) {
+      if (historyData.length === 0) {
+        setFormError(ERRORS.NO_RESULTS);
+      } else if (res.status === 200) {
         setFormError('');
         formMethods.reset();
       }

@@ -6,6 +6,7 @@ export const ERRORS = {
   INVALID_CRED: 'Invalid Credentials. Try Again.',
   SERVER_ERROR: 'Something went wrong. Please try again.',
   AUTHENTICATION_ERROR: 'Please Login to view this page.',
+  NO_RESULTS: 'No Results Found.',
 };
 export const MESSAGES = {
   TRY_AGAIN: 'Please Try Again',
