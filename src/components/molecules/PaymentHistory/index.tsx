@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { BiRupee } from 'react-icons/bi';
 
 import { History } from '@interfaces/History';
 
@@ -20,6 +21,13 @@ const PaymentHistory: FC<PaymentHistoryProps> = ({ history }) => {
       <p className="p-2">
         <span className="font-bold mr-2">New Count:</span>
         {history.newCount}
+      </p>
+      <p className="p-2 flex items-center">
+        <span className="font-bold mr-2">Payment:</span>
+        <span className="flex items-center">
+          <BiRupee />
+          {history.newCount * 100 + history.reviewCount * 50}
+        </span>
       </p>
     </div>
   );
