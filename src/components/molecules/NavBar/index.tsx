@@ -21,7 +21,7 @@ export interface NavBarProps {}
 const NavBar: FC<NavBarProps> = () => {
   const location = useLocation();
 
-  const user = useAuthStore((state) => state.user);
+  const authToken = useAuthStore((state) => state.authToken);
   const logout = useAuthStore((state) => state.logout);
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -35,7 +35,7 @@ const NavBar: FC<NavBarProps> = () => {
         <BrandLogo link={HOME_PAGE} />
         <div>
           <ul className="hidden item-center text-brown300 tablet:flex desktop:flex">
-            {user ? (
+            {authToken ? (
               <>
                 <NavBarLink
                   type="desktop"
@@ -95,7 +95,7 @@ const NavBar: FC<NavBarProps> = () => {
           </div>
           <div className="flex-col">
             <ul>
-              {user ? (
+              {authToken ? (
                 <>
                   <NavBarLink type="mobile" href={REGISTER_PHARMACIST_PAGE}>
                     Register Pharmacist

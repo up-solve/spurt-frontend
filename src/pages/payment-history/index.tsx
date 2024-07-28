@@ -15,13 +15,13 @@ export interface PaymentHistoryPageProps {}
 const PaymentHistoryPage: FC<PaymentHistoryPageProps> = () => {
   const navigate = useNavigate();
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-  const user = useAuthStore((state) => state.user);
+  const authToken = useAuthStore((state) => state.authToken);
 
   useEffect(() => {
-    if (!isAuthenticated || !user) {
+    if (!isAuthenticated || !authToken) {
       navigate(LOGIN_PAGE);
     }
-  }, [user, isAuthenticated, navigate]);
+  }, [authToken, isAuthenticated, navigate]);
 
   return (
     <>

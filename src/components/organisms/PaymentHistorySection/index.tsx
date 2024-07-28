@@ -4,6 +4,7 @@ import { FieldValues, FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { History } from '@interfaces/History';
+import { useAuthStore } from '@store/authStore';
 import { paymentHistoryRequest } from '@services/payment-history';
 import { paymentHistoryFormSchema } from '@validations/payment-history-form';
 
@@ -19,6 +20,7 @@ export interface PaymentHistorySectionProps {}
 const PaymentHistorySection: FC<PaymentHistorySectionProps> = () => {
   const [formError, setFormError] = useState('');
   const [history, setHistory] = useState<History[]>([]);
+  const authToken = useAuthStore((state) => state.authToken);
 
   const formMethods = useForm({
     resolver: zodResolver(paymentHistoryFormSchema),
@@ -27,7 +29,7 @@ const PaymentHistorySection: FC<PaymentHistorySectionProps> = () => {
   const onSubmit = async (data: FieldValues) => {
     setFormError('');
     try {
-      const res = await paymentHistoryRequest(data?.phoneNo);
+      const res = await paymentHistoryRequest(data?.phoneNo, authToken!);
 
       const historyData = res?.data?.data;
 

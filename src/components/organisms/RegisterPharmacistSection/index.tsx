@@ -33,8 +33,7 @@ const RegisterPharmacistSection: FC<RegisterPharmacistSectionProps> = () => {
         data?.lastName,
         data?.phoneNo
       );
-      // eslint-disable-next-line no-console
-      console.log(res);
+
       if (res?.data?.status === 200) {
         setFormError('');
         setFormSuccess(MESSAGES.PHARMACIST_CREATED);

@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 import { isAxiosError } from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
+
 import { FieldValues, FormProvider, useForm } from 'react-hook-form';
 
 import { loginSchema } from '@validations/auth';
@@ -21,9 +22,8 @@ const LoginSection: FC<LoginSectionProps> = () => {
   const navigate = useNavigate();
 
   const setAuthToken = useAuthStore((state) => state.setAuthToken);
-  const setUser = useAuthStore((state) => state.setUser);
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-  const user = useAuthStore((state) => state.user);
+  const authToken = useAuthStore((state) => state.authToken);
 
   const [isInvalidCred, setIsInvalidCred] = useState(false);
   const [formError, setFormError] = useState('');
@@ -37,30 +37,19 @@ const LoginSection: FC<LoginSectionProps> = () => {
     try {
       const res = await loginRequest(data?.email, data?.password);
 
-      // eslint-disable-next-line no-console
-      console.log(res);
-
       if (res.status === 200) {
         setFormError('');
         setIsInvalidCred(false);
 
-        const loginResponse = res.data.data;
+        const loginResponse = res?.data;
 
-        setAuthToken(loginResponse?.email);
-        setUser({
-          name: {
-            first: loginResponse.firstname,
-          },
-          email: loginResponse.email,
-        });
+        setAuthToken(loginResponse?.data);
       }
       navigate(HOME_PAGE);
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
       if (isAxiosError(error)) {
-        const status = error.response?.data?.status;
-        if (status === 401 || status === 403) {
+        const status = error.response?.status;
+        if (status === 401 || status === 403 || status === 404) {
           setIsInvalidCred(true);
           setFormError(ERRORS.INVALID_CRED);
         } else {
@@ -76,7 +65,7 @@ const LoginSection: FC<LoginSectionProps> = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-full gap-y-10">
-      {isAuthenticated && user && <Navigate to={HOME_PAGE} />}
+      {isAuthenticated && authToken && <Navigate to={HOME_PAGE} />}
       <FormProvider {...formMethods}>
         <form onSubmit={formMethods.handleSubmit(onSubmit)}>
           <FormInput

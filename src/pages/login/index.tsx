@@ -14,11 +14,11 @@ export interface LoginPageProps {}
 
 const LoginPage: FC<LoginPageProps> = () => {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-  const user = useAuthStore((state) => state.user);
+  const authToken = useAuthStore((state) => state.authToken);
 
   return (
     <>
-      {isAuthenticated && user && <Navigate to={HOME_PAGE} />}
+      {isAuthenticated && authToken && <Navigate to={HOME_PAGE} />}
       <SeoComponent title="Login" href="login" />
       <div className={`${styles.formSection} px-2 desktop:pt-3`}>
         <LoginSection />
